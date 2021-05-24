@@ -4,7 +4,9 @@ import os
 
 import flask
 
-from authlib.client import OAuth2Session
+#authlib==0.11#from authlib.client import OAuth2Session
+from authlib.integrations.requests_client import OAuth2Session
+
 import google.oauth2.credentials
 import googleapiclient.discovery
 
@@ -29,4 +31,6 @@ def index():
 
         return flask.render_template('list.html', files=items['files'], user_info=google_auth.get_user_info())
 
-    return 'You are not currently logged in.'
+    #return 'You are not currently logged in.'
+    #return '<a href="/google/login">login</a>'
+    return flask.render_template('login.html')
